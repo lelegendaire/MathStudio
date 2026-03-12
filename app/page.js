@@ -67,7 +67,7 @@ export default function Home() {
       <header className="flex-shrink-0 h-12  flex items-center justify-between px-5 z-10 rounded-2xl bg-[#F6F4F1]">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-display text-xl text-gold-400 tracking-wide">MathStudio</span>
+            <span className="font-display text-xl  tracking-wide">MathStudio</span>
             
           </div>
           <div className="hidden md:flex items-center gap-1 ml-4">
