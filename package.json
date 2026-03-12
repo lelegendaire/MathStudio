@@ -9,9 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "katex": "^0.16.38",
+    "mathjs": "^15.1.1",
+    "nerdamer": "^1.1.13",
     "next": "16.1.6",
+    "plotly.js-dist-min": "^3.4.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
