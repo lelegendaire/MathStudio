@@ -63,13 +63,13 @@ export default function InputPanel({ onResult, isLoading, history }) {
     }
 
     return (
-        <div className="flex flex-col h-full w-full bg-[#F6F4F1] items-center justify-center ">
+        <div className="flex flex-col h-full w-full bg-[#F6F4F1] items-center overflow-hidden">
             {/* Header */}
 
 
             {/* History */}
             {history.length > 0 && (
-                <div ref={historyRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0 max-h-screen w-full mb-auto">
+                <div ref={historyRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0 w-full  max-h-100 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {history.map((item, i) => {
                         const typeInfo = TYPE_LABELS[item.result?.type] || TYPE_LABELS.unknown
                         return (
@@ -114,7 +114,7 @@ export default function InputPanel({ onResult, isLoading, history }) {
                     )}
                 </div>
             )}
-            <div className="flex-shrink-0 px-4 w-80/100">
+            <div className="flex-shrink-0 px-4 w-80/100 mt-auto pb-4">
                 <div className="relative ">
                     <textarea
                         ref={textareaRef}
@@ -148,10 +148,9 @@ export default function InputPanel({ onResult, isLoading, history }) {
                 </div>
             </div>
             {/* Examples — shown when no history */}
-            {showExamples && history.length === 0 && (
-                <div className="flex-1 overflow-y-auto px-4  min-h-0  w-80/100">
-
-                    <div className="space-y-2 flex gap-3 ">
+            {showExamples && (
+                <div className="flex-shrink-0 overflow-x-auto px-4 py-2 w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <div className="flex gap-3 w-max">
                         {EXAMPLES.map((ex, i) => (
                             <button
                                 key={i}

@@ -64,8 +64,8 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#F6F4F1] ">
       {/* Top bar */}
-      <header className="flex-shrink-0 h-12  flex-col flex items-center justify-between px-5 z-10 rounded-2xl bg-[#F6F4F1]">
-        <div className="flex items-center gap-3 flex-col">
+      <header className={`${(history.length > 0 || currentResult) ? 'flex-row' : 'flex-col'} flex-shrink-0 h-12   flex items-center justify-between px-5 z-10 rounded-2xl bg-[#F6F4F1]`}>
+        <div className={`${(history.length > 0 || currentResult) ? 'flex-row' : 'flex-col'} flex items-center gap-3 `}>
           <div className="flex items-center gap-2">
             <span className="font-bold text-4xl tracking-wide">MathStudio</span>
             
@@ -93,7 +93,7 @@ export default function Home() {
       {/* Main panels */}
       <div className="flex items-center justify-center min-h-0 overflow-hidden h-screen ">
         {/* Left — Input */}
-        <div  className="w-full overflow-hidden ">
+        <div  className={`${(history.length > 0 || currentResult) ? 'w-[45%]' : 'w-full'} overflow-hidden transition-all duration-300`}>
           <InputPanel
             onResult={handleInput}
             isLoading={isLoading}
@@ -110,9 +110,11 @@ export default function Home() {
         </div>
 
         {/* Right — Visualization */}
-        <div className="flex-1 min-w-0 overflow-hidden">
-          <VisualizationPanel result={currentResult} isLoading={isLoading} />
-        </div>
+        {(history.length > 0 || currentResult) && (
+  <div className="flex-1 min-w-0 overflow-hidden h-full">
+    <VisualizationPanel result={currentResult} isLoading={isLoading} />
+  </div>
+)}
       </div>
     </div>
   )
