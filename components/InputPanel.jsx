@@ -63,23 +63,13 @@ export default function InputPanel({ onResult, isLoading, history }) {
     }
 
     return (
-        <div className="flex flex-col h-full bg-[#F6F4F1] ">
+        <div className="flex flex-col h-full w-full bg-[#F6F4F1] items-center justify-center ">
             {/* Header */}
-            <div className="flex-shrink-0 px-5 py-4 ">
-                <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-gold-500/15 border border-gold-500/30 flex items-center justify-center">
-                        <span className="text-gold-400 text-xs font-mono">∑</span>
-                    </div>
-                    <div>
-                        <h2 className="text-xs font-medium  uppercase tracking-widest">Entrée</h2>
-                        <p className="text-xs mt-0.5">Langage naturel ou syntaxe math</p>
-                    </div>
-                </div>
-            </div>
+
 
             {/* History */}
             {history.length > 0 && (
-                <div ref={historyRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0">
+                <div ref={historyRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0 max-h-screen w-full mb-auto">
                     {history.map((item, i) => {
                         const typeInfo = TYPE_LABELS[item.result?.type] || TYPE_LABELS.unknown
                         return (
@@ -124,33 +114,8 @@ export default function InputPanel({ onResult, isLoading, history }) {
                     )}
                 </div>
             )}
-
-            {/* Examples — shown when no history */}
-            {showExamples && history.length === 0 && (
-                <div className="flex-1 overflow-y-auto px-4 py-3 min-h-0">
-                    <p className="text-xs uppercase tracking-widest mb-3">Exemples</p>
-                    <div className="space-y-2">
-                        {EXAMPLES.map((ex, i) => (
-                            <button
-                                key={i}
-                                onClick={() => handleSubmit(ex.text)}
-                                className="w-full text-left group flex items-center gap-3 px-3 py-2.5 rounded-xl  border border-noir-600 hover:border-gold-500/40 transition-all duration-200"
-                            >
-                                <span className="text-base">{ex.icon}</span>
-                                <div className="flex-1 min-w-0">
-                                    <span className="text-xs  uppercase tracking-wide">{ex.label}</span>
-                                    <p className="text-xs  font-mono truncate mt-0.5">{ex.text}</p>
-                                </div>
-                                <span className=" group-hover:text-gold-500 transition-colors text-sm">↵</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Input area */}
-            <div className="flex-shrink-0 p-4 border-t border-black">
-                <div className="relative">
+            <div className="flex-shrink-0 px-4 w-80/100">
+                <div className="relative ">
                     <textarea
                         ref={textareaRef}
                         value={input}
@@ -158,8 +123,9 @@ export default function InputPanel({ onResult, isLoading, history }) {
                         onKeyDown={handleKey}
                         placeholder="Écris une expression... (ex: résous x²-4=0)"
                         rows={3}
+                        id='textara1'
                         disabled={isLoading}
-                        className="w-full  border border-noir-500 focus:border-gold-500/60 rounded-xl px-4 py-3 text-sm  placeholder-slate-600 font-mono resize-none transition-colors duration-200 disabled:opacity-50 pr-12"
+                        className="w-full rounded-xl px-4 py-3 text-sm font-mono resize-none transition-colors duration-200 disabled:opacity-50 pr-12 shadow-[0px_8px_32px_rgba(0,0,0,0.1),inset_0px_1px_0px_rgba(255,255,255,0.5)] bg-[linear-gradient(135deg,rgba(255,240,235,0.4)_0%,rgba(255,255,255,0.3)_50%,rgba(245,235,255,0.4)_100%)] backdrop-blur-[40px] backdrop-saturate-[200%] border border-[rgba(255,255,255,0.3)] focus:border-[rgba(255,255,255,0.3)]"
                         style={{ lineHeight: '1.5' }}
                     />
                     <button
@@ -173,7 +139,7 @@ export default function InputPanel({ onResult, isLoading, history }) {
                     </button>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                    <p className="text-xs ">Entrée pour envoyer · Maj+Entrée pour nouvelle ligne</p>
+
                     {history.length > 0 && (
                         <button onClick={() => setShowExamples(!showExamples)} className="text-xs  transition-colors">
                             {showExamples ? 'Masquer' : 'Exemples'}
@@ -181,6 +147,31 @@ export default function InputPanel({ onResult, isLoading, history }) {
                     )}
                 </div>
             </div>
+            {/* Examples — shown when no history */}
+            {showExamples && history.length === 0 && (
+                <div className="flex-1 overflow-y-auto px-4  min-h-0  w-80/100">
+
+                    <div className="space-y-2 flex gap-3 ">
+                        {EXAMPLES.map((ex, i) => (
+                            <button
+                                key={i}
+                                onClick={() => handleSubmit(ex.text)}
+                                className="w-75 text-left group flex items-center  gap-3 px-3 py-1.5 rounded-xl  border transition-all duration-200"
+                            >
+                                <span className="text-base">{ex.icon}</span>
+                                <div className="flex-1 min-w-0">
+                                    <span className="text-xs uppercase tracking-wide">{ex.label}</span>
+                                    <p className="text-xs font-mono truncate mt-0.5">{ex.text}</p>
+                                </div>
+                                <span className=" transition-colors text-sm">↵</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Input area */}
+
         </div>
 
     )

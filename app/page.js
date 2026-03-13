@@ -64,10 +64,10 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#F6F4F1] ">
       {/* Top bar */}
-      <header className="flex-shrink-0 h-12  flex items-center justify-between px-5 z-10 rounded-2xl bg-[#F6F4F1]">
-        <div className="flex items-center gap-3">
+      <header className="flex-shrink-0 h-12  flex-col flex items-center justify-between px-5 z-10 rounded-2xl bg-[#F6F4F1]">
+        <div className="flex items-center gap-3 flex-col">
           <div className="flex items-center gap-2">
-            <span className="font-display text-xl  tracking-wide">MathStudio</span>
+            <span className="font-bold text-4xl tracking-wide">MathStudio</span>
             
           </div>
           <div className="hidden md:flex items-center gap-1 ml-4">
@@ -91,9 +91,9 @@ export default function Home() {
       </header>
 
       {/* Main panels */}
-      <div className="flex flex-1 min-h-0 overflow-hidden ">
+      <div className="flex items-center justify-center min-h-0 overflow-hidden h-screen ">
         {/* Left — Input */}
-        <div style={{ width: `${panelWidth}%`, minWidth: '280px' }} className="flex-shrink-0 overflow-hidden">
+        <div  className="w-full overflow-hidden ">
           <InputPanel
             onResult={handleInput}
             isLoading={isLoading}
